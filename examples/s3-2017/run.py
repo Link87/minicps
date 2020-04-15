@@ -12,7 +12,7 @@ s317 run.py
 import io
 #from contextlib import redirect_stdout
 from io import TextIOWrapper, BytesIO
-from cStringIO import StringIO
+from io import StringIO
 from subprocess import call
 from time import sleep
 
@@ -37,7 +37,7 @@ import sys
 import os
 import random
 from multiprocessing import Process, Value
-import httplib, urllib
+import http.client, urllib.request, urllib.parse, urllib.error
 #import requests
 import subprocess
 import json
@@ -45,7 +45,7 @@ import time
 import datetime
 from threading import Thread
 #from bluetooth4LE import *
-import ConfigParser
+import configparser
 import struct
 from functools import wraps
 
@@ -114,7 +114,7 @@ def cli():
     ADMIN_512 = 'bf33ea356054cbac9cc9b65c475b8b7ea0a1347d1f28b8f92cf065614cc7853b4f1d66e498111aed84f8741feeda553229c970fdaec5cf60b8c00250bbdcb6cf'
 
     if secret_512 != ADMIN_512:
-	return '\nPlease send secret.\n'
+    return '\nPlease send secret.\n'
 
     with open('/tmp/webapp-cmd', 'w') as f:
         f.write(cmd)
@@ -208,7 +208,7 @@ def stop():
 
     net.stop()
 
-    print "*** Running clean.sh"
+    print("*** Running clean.sh")
     call('./clean.sh')
 
     running = False
